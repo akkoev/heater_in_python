@@ -1,8 +1,8 @@
-from heatermod import HeaterCustom
+from heatermod import Heater
 import numpy as np
 import time
 
-h = HeaterCustom()
+h = Heater()
 
 dm_water = 0.1
 P_natural_gas = 10000
@@ -14,8 +14,8 @@ dt = np.array([1.0])
 
 h.init(u)
 t0 = time.time()
-while h.gettime() < 1000:
-    h.step(u, dt)
+while h.getTime() < 1000:
+    h.calc(u, dt)
 
 t1  =time.time()
 print(t1-t0)
@@ -24,8 +24,8 @@ print(t1-t0)
 h.init(u)
 t2 = time.time()
 dt = np.array([10.0])
-while h.gettime() < 1000:
-    h.step(u, dt)
+while h.getTime() < 1000:
+    h.calc(u, dt)
 
 t3 = time.time()
 print(t3-t2)
