@@ -24,7 +24,7 @@ class get_pybind_include(object):
 ext_modules = [
     Extension(
         'heatermod',
-        ['common/EulerAngles.cpp','Heater.cpp','common/MotionProfiles.cpp','common/xxfuncs.cpp','common/xxinteg.cpp','common/xxinverse.cpp','common/xxmatrix.cpp','module_part.cpp'],
+        ['common/EulerAngles.cpp','Heater.cpp','common/MotionProfiles.cpp','common/xxfuncs.cpp','common/xxinteg.cpp','common/xxinverse.cpp','common/xxmatrix.cpp','module.cpp'],
         include_dirs=[
             # Path to pybind11 headers
             get_pybind_include(),
