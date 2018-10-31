@@ -22,14 +22,14 @@ class Submodel20sim;	//Forward declaration
 class IntegrationMethod
 {
   public:
-	IntegrationMethod(void): major(false), model(NULL) {	};
+	IntegrationMethod(void): majoor(false), model(NULL) {	};
 	virtual ~IntegrationMethod(void) {	};
 	virtual void Initialize(Submodel20sim* themodel) = 0;
 	virtual void Terminate() = 0;
 	virtual void Step() = 0;
 	
 	//variables
-	bool major;	//integration step: major/minor step
+	bool majoor;	//integration step: major/minor step
   protected:
 	Submodel20sim* model;
 };

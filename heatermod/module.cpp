@@ -13,11 +13,11 @@
 namespace py = pybind11;
 
 // wrapper to expose methods of Heater to Python such that it accepts numpy.ndarray as input and output
-class HeaterCustom : public Heater {
+class HeaterWrapper : public Heater {
 public:
 
 	/* Initialize wrapper */
-	void Initialize(py::array_t<double> u)
+	void init(py::array_t<double> u)
 	{
 		/* read input arrays buffer_info */
 		py::buffer_info bufu = u.request();
@@ -41,7 +41,7 @@ public:
 
 
 	/* wrapper to calculate large time step */
-	py::array_t<double> CalculateLargeStep(py::array_t<double> u, py::array_t<double> dt)
+	py::array_t<double> calc(py::array_t<double> u, py::array_t<double> dt)
 	{
 		/* read input arrays buffer_info */
 		py::buffer_info bufu = u.request();    // 3 element intput vector
@@ -98,11 +98,11 @@ public:
 
 PYBIND11_MODULE(heatermod, m) {
 
-	py::class_<HeaterCustom>(m, "HeaterCustom")
-		.def(py::init([]() { return new  HeaterCustom(); }))
-		.def("Initialize", &HeaterCustom::Initialize)
-		.def("CalculateLargeStep", &HeaterCustom::CalculateLargeStep)
-		.def("GetTime", &HeaterCustom::GetTime);
+	py::class_<HeaterWrapper>(m, "Heater")
+		.def(py::init([]() { return new HeaterWrapper(); }))
+		.def("init", &HeaterWrapper::init)
+		.def("calc", &HeaterWrapper::calc)
+		.def("gettime", &HeaterWrapper::getTime);
 
 #ifdef VERSION_INFO
 	m.attr("__version__") = VERSION_INFO;

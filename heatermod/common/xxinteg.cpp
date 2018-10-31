@@ -36,7 +36,7 @@
 Discrete::Discrete(void)
 {
 	model = NULL;
-	major = true;
+	majoor = true;
 }
 
 Discrete::~Discrete(void)
@@ -49,7 +49,7 @@ Discrete::~Discrete(void)
 void Discrete::Initialize (Submodel20sim* themodel)
 {
 	model = themodel;
-	major = true;
+	majoor = true;
 	model->m_major = true;
 }
 
@@ -73,7 +73,7 @@ void Discrete::Step ()
 
 	/* increment the simulation time */
 	model->m_time += model->m_step_size;
-	major = true;
+	majoor = true;
 	model->m_major = true;
 
 	/* evaluate the dynamic part to calculate the new rates */
@@ -86,7 +86,7 @@ void Discrete::Step ()
 Euler::Euler(void)
 {
 	model = NULL;
-	major = true;
+	majoor = true;
 }
 
 Euler::~Euler(void)
@@ -99,7 +99,7 @@ Euler::~Euler(void)
 void Euler::Initialize(Submodel20sim* themodel)
 {
 	model = themodel;
-	major = true;
+	majoor = true;
 	model->m_major = true;
 }
 
@@ -123,7 +123,7 @@ void Euler::Step ()
 
 	/* increment the simulation time */
 	model->m_time += model->m_step_size;
-	major = true;
+	majoor = true;
 	model->m_major = true;
 
 	/* evaluate the dynamic part to calculate the new rates */
@@ -138,7 +138,7 @@ RungeKutta2::RungeKutta2(void):
 	q0(NULL)
 {
 	model = NULL;
-	major = true;
+	majoor = true;
 }
 
 RungeKutta2::~RungeKutta2(void)
@@ -196,7 +196,7 @@ void RungeKutta2::Step ()
 		}
 
 		model->m_time = rktime + 0.5 * model->m_step_size;
-		major = false;
+		majoor = false;
 		model->m_major = false;
 		model->CalculateDynamic ();
 
@@ -219,7 +219,7 @@ void RungeKutta2::Step ()
 		model->m_time += model->m_step_size;
 	}
 
-	major = true;
+	majoor = true;
 	model->m_major = true;
 
 	/* evaluate the derivative model to calculate the new rates */
@@ -238,7 +238,7 @@ RungeKutta4::RungeKutta4(void):
 	q4(NULL)
 {
 	model = NULL;
-	major = true;
+	majoor = true;
 }
 
 RungeKutta4::~RungeKutta4(void)
@@ -318,7 +318,7 @@ void RungeKutta4::Step ()
 		/* calculate q2 = f (states + q1 / 2, t + dt / 2) * dt  */
 		model->m_time = rktime + model->m_step_size / 2;
 
-		major = false;
+		majoor = false;
 		model->m_major = false;
 
 		model->CalculateDynamic ();
@@ -374,7 +374,7 @@ void RungeKutta4::Step ()
 		model->m_time += model->m_step_size;
 	}
 
-	major = true;
+	majoor = true;
 	model->m_major = true;
 
 	/* evaluate the derivative model to calculate the new rates */
