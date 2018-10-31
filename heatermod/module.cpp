@@ -102,7 +102,7 @@ PYBIND11_MODULE(heatermod, m) {
 		.def(py::init([]() { return new HeaterWrapper(); }))
 		.def("init", &HeaterWrapper::init)
 		.def("calc", &HeaterWrapper::calc)
-		.def("gettime", &HeaterWrapper::getTime);
+		.def("getTime", &HeaterWrapper::getTime);
 
 #ifdef VERSION_INFO
 	m.attr("__version__") = VERSION_INFO;
