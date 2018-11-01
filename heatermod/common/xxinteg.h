@@ -4,8 +4,8 @@
  *  file:  common\xxinteg.h
  *  model: heater
  *  expmt: heater
- *  date:  October 26, 2018
- *  time:  3:48:46 PM
+ *  date:  November 1, 2018
+ *  time:  5:48:32 PM
  *  user:  Johannes Burger
  *  from:  Cooll Sustainable Energy Solutions BV, 20-sim 4.7 Professional Single
  *  build: 4.7.1.8902
@@ -22,14 +22,14 @@ class Submodel20sim;	//Forward declaration
 class IntegrationMethod
 {
   public:
-	IntegrationMethod(void): majoor(false), model(NULL) {	};
+	IntegrationMethod(void): major(false), model(NULL) {	};
 	virtual ~IntegrationMethod(void) {	};
 	virtual void Initialize(Submodel20sim* themodel) = 0;
 	virtual void Terminate() = 0;
 	virtual void Step() = 0;
 	
 	//variables
-	bool majoor;	//integration step: major/minor step
+	bool major;	//integration step: major/minor step
   protected:
 	Submodel20sim* model;
 };

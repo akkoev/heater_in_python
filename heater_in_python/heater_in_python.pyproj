@@ -22,7 +22,11 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="environment.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="heater_in_python.py" />
+    <Compile Include="simple_pid.py" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.6-32" />

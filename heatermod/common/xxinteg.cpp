@@ -5,8 +5,8 @@
  *  subm:  Heater
  *  model: heater
  *  expmt: heater
- *  date:  October 26, 2018
- *  time:  3:48:46 PM
+ *  date:  November 1, 2018
+ *  time:  5:48:32 PM
  *  user:  Johannes Burger
  *  from:  Cooll Sustainable Energy Solutions BV, 20-sim 4.7 Professional Single
  *  build: 4.7.1.8902
@@ -36,7 +36,7 @@
 Discrete::Discrete(void)
 {
 	model = NULL;
-	majoor = true;
+	major = true;
 }
 
 Discrete::~Discrete(void)
@@ -49,7 +49,7 @@ Discrete::~Discrete(void)
 void Discrete::Initialize (Submodel20sim* themodel)
 {
 	model = themodel;
-	majoor = true;
+	major = true;
 	model->m_major = true;
 }
 
@@ -73,7 +73,7 @@ void Discrete::Step ()
 
 	/* increment the simulation time */
 	model->m_time += model->m_step_size;
-	majoor = true;
+	major = true;
 	model->m_major = true;
 
 	/* evaluate the dynamic part to calculate the new rates */
@@ -86,7 +86,7 @@ void Discrete::Step ()
 Euler::Euler(void)
 {
 	model = NULL;
-	majoor = true;
+	major = true;
 }
 
 Euler::~Euler(void)
@@ -99,7 +99,7 @@ Euler::~Euler(void)
 void Euler::Initialize(Submodel20sim* themodel)
 {
 	model = themodel;
-	majoor = true;
+	major = true;
 	model->m_major = true;
 }
 
@@ -123,7 +123,7 @@ void Euler::Step ()
 
 	/* increment the simulation time */
 	model->m_time += model->m_step_size;
-	majoor = true;
+	major = true;
 	model->m_major = true;
 
 	/* evaluate the dynamic part to calculate the new rates */
@@ -138,7 +138,7 @@ RungeKutta2::RungeKutta2(void):
 	q0(NULL)
 {
 	model = NULL;
-	majoor = true;
+	major = true;
 }
 
 RungeKutta2::~RungeKutta2(void)
@@ -196,7 +196,7 @@ void RungeKutta2::Step ()
 		}
 
 		model->m_time = rktime + 0.5 * model->m_step_size;
-		majoor = false;
+		major = false;
 		model->m_major = false;
 		model->CalculateDynamic ();
 
@@ -219,7 +219,7 @@ void RungeKutta2::Step ()
 		model->m_time += model->m_step_size;
 	}
 
-	majoor = true;
+	major = true;
 	model->m_major = true;
 
 	/* evaluate the derivative model to calculate the new rates */
@@ -238,7 +238,7 @@ RungeKutta4::RungeKutta4(void):
 	q4(NULL)
 {
 	model = NULL;
-	majoor = true;
+	major = true;
 }
 
 RungeKutta4::~RungeKutta4(void)
@@ -318,7 +318,7 @@ void RungeKutta4::Step ()
 		/* calculate q2 = f (states + q1 / 2, t + dt / 2) * dt  */
 		model->m_time = rktime + model->m_step_size / 2;
 
-		majoor = false;
+		major = false;
 		model->m_major = false;
 
 		model->CalculateDynamic ();
@@ -374,7 +374,7 @@ void RungeKutta4::Step ()
 		model->m_time += model->m_step_size;
 	}
 
-	majoor = true;
+	major = true;
 	model->m_major = true;
 
 	/* evaluate the derivative model to calculate the new rates */

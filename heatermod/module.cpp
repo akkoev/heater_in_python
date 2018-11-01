@@ -27,7 +27,7 @@ public:
 		/* pointer to buffer */
 		double *ptru = (double *)bufu.ptr;
 
-		XXDouble y[1 + 1] = { 0.0, 0.0 };
+		XXDouble y[11 + 1] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 		XXDouble t = 0.0;
 
 		Heater::Initialize(ptru, y, t);
@@ -53,7 +53,7 @@ public:
 			throw std::runtime_error("Input shape for dt must be 1");
 
 		/* allocate the output buffer */
-		py::array_t<double> y = py::array_t<double>(1);  //1 element output vector
+		py::array_t<double> y = py::array_t<double>(11);  //11 element output vector
 		py::buffer_info bufy = y.request();
 
 		/* pointer to buffers */
@@ -64,12 +64,12 @@ public:
 
 		/* Variable used as input for Heater::Calculate() 		*/
 		XXDouble uu[3 + 1];
-		XXDouble yy[1 + 1];
+		XXDouble yy[11 + 1];
 
 		/* Copy numpy input vector to input vector for Heater::Calculate */
-		uu[0] = ptru[0];
-		uu[1] = ptru[1];
-		uu[2] = ptru[2];
+		uu[0] = ptru[2]; /* dm_water {kg/s} */
+		uu[1] = ptru[0]; /* P_natural_gas {W} */
+		uu[2] = ptru[1]; /* Tin */
 
 
 		if (state == Heater::finished)
@@ -85,7 +85,17 @@ public:
 		}
 
 		/* Copy output yy to vector which will be returned to python */
-		ptry[0] = yy[0];
+		ptry[0] = yy[0];   // P_actual {W}
+		ptry[1] = yy[1];   // TSteel1 {K}
+		ptry[2] = yy[2];   // TSteel2 {K}
+		ptry[3] = yy[3];   // TSteel3 {K}
+		ptry[4] = yy[4];   // TSteel4 {K}
+		ptry[5] = yy[5];   // TSteel5 {K}
+		ptry[6] = yy[6];   // TWater1 {K}
+		ptry[7] = yy[7];   // TWater2 {K}
+		ptry[8] = yy[8];   // TWater3 {K}
+		ptry[9] = yy[9];   // TWater4 {K}
+		ptry[10] = yy[10]; // TWater5 {K}
 
 		return y;
 	}
