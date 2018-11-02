@@ -85,17 +85,18 @@ public:
 		}
 
 		/* Copy output yy to vector which will be returned to python */
-		ptry[0] = yy[0];   // P_actual {W}
-		ptry[1] = yy[1];   // TSteel1 {K}
-		ptry[2] = yy[2];   // TSteel2 {K}
-		ptry[3] = yy[3];   // TSteel3 {K}
-		ptry[4] = yy[4];   // TSteel4 {K}
-		ptry[5] = yy[5];   // TSteel5 {K}
-		ptry[6] = yy[6];   // TWater1 {K}
-		ptry[7] = yy[7];   // TWater2 {K}
-		ptry[8] = yy[8];   // TWater3 {K}
-		ptry[9] = yy[9];   // TWater4 {K}
-		ptry[10] = yy[10]; // TWater5 {K}
+		/* Note that the order of variables can change when updating the 20-sim model*/
+		ptry[10] = yy[0];  // P_actual {W}
+		ptry[5] = yy[1];   // TSteel1 {K}
+		ptry[6] = yy[2];   // TSteel2 {K}
+		ptry[7] = yy[3];   // TSteel3 {K}
+		ptry[8] = yy[4];   // TSteel4 {K}
+		ptry[9] = yy[5];   // TSteel5 {K}
+		ptry[0] = yy[6];   // TWater1 {K}
+		ptry[1] = yy[7];   // TWater2 {K}
+		ptry[2] = yy[8];   // TWater3 {K}
+		ptry[3] = yy[9];   // TWater4 {K}
+		ptry[4] = yy[10];  // TWater5 {K}
 
 		return y;
 	}

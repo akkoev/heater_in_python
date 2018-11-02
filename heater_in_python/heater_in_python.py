@@ -7,7 +7,7 @@ from simple_pid import PID
 
 # Settings
 dt = 1.0
-nCycles = 3
+nCycles = 2
 T_sp = 453 # Setpoint in K
 
 # Heater
@@ -19,7 +19,7 @@ tEnd = env.t_cycle * nCycles
 
 # Controller
 # Create PID controller with typical setting for current problem
-pid = PID(200, 20, 10, setpoint=T_sp , sample_time=dt, output_limits=(0, 10000) )
+pid = PID(200, 40, 10, setpoint=T_sp , sample_time=dt, output_limits=(0, 10000) )
 
 
 
@@ -53,7 +53,7 @@ while t < tEnd:
 
     # Determine power setting for next iteration:
     #P = max(0,min(10000,300 * (453 - y[1])))    # Proportional controller
-    P =  pid(y[6],dt)                            # PID controller
+    P =  pid(y[0],dt)                            # PID controller
     #P = 9000                                    # Constant power
 
     # Store in output buffer
@@ -68,22 +68,28 @@ while t < tEnd:
 # Plot data
 fig, (ax1, ax2, ax3) = plt.subplots(3, 1)
 
-ax1.plot(T[0:it],Y[0:it,10] , color=plt.cm.jet(100) , linestyle='-' ,label="layer 5, water")
-ax1.plot(T[0:it],Y[0:it,9] , color=plt.cm.jet(125) , linestyle='-'  ,label="layer 4, water")
-ax1.plot(T[0:it],Y[0:it,8] , color=plt.cm.jet(150) , linestyle='-'  ,label="layer 3, water")
-ax1.plot(T[0:it],Y[0:it,7] , color=plt.cm.jet(175) , linestyle='-'  ,label="layer 2, water")
-ax1.plot(T[0:it],Y[0:it,6] , color=plt.cm.jet(225) , linestyle='-'  ,label="Output")
-ax1.plot(T[0:it],Y[0:it,5] , color=plt.cm.jet(100) , linestyle=':'  ,label="layer 5, steel")
-ax1.plot(T[0:it],Y[0:it,4] , color=plt.cm.jet(125) , linestyle=':'  ,label="layer 4, steel")
-ax1.plot(T[0:it],Y[0:it,3] , color=plt.cm.jet(150) , linestyle=':'  ,label="layer 3, steel")
-ax1.plot(T[0:it],Y[0:it,2] , color=plt.cm.jet(175) , linestyle=':'  ,label="layer 2, steel")
-ax1.plot(T[0:it],Y[0:it,1] , color=plt.cm.jet(225) , linestyle=':'  ,label="layer 1, steel")
+
+
+ax1.plot(T[0:it],Y[0:it,0] , color=plt.cm.jet(225) , linestyle='-'  ,label="Output")
+ax1.plot(T[0:it],Y[0:it,1] , color=plt.cm.jet(175) , linestyle='-'  ,label="layer 2, water")
+ax1.plot(T[0:it],Y[0:it,2] , color=plt.cm.jet(150) , linestyle='-'  ,label="layer 3, water")
+ax1.plot(T[0:it],Y[0:it,3] , color=plt.cm.jet(125) , linestyle='-'  ,label="layer 4, water")
+ax1.plot(T[0:it],Y[0:it,4] , color=plt.cm.jet(100) , linestyle='-'  ,label="layer 5, water")
+ax1.plot(T[0:it],Y[0:it,5] , color=plt.cm.jet(225) , linestyle=':'  ,label="layer 1, steel")
+ax1.plot(T[0:it],Y[0:it,6] , color=plt.cm.jet(175) , linestyle=':'  ,label="layer 2, steel")
+ax1.plot(T[0:it],Y[0:it,7] , color=plt.cm.jet(150) , linestyle=':'  ,label="layer 3, steel")
+ax1.plot(T[0:it],Y[0:it,8] , color=plt.cm.jet(125) , linestyle=':'  ,label="layer 4, steel")
+ax1.plot(T[0:it],Y[0:it,9] , color=plt.cm.jet(100) , linestyle=':'  ,label="layer 5, steel")
+
+
+
+
 ax1.plot(T[0:it],U[0:it,1] , color=plt.cm.jet(0  ) , linestyle='-'  ,label="Input")
 ax1.set_ylabel('Temperature (degC)')
-ax1.legend(fontsize=4)
+ax1.legend(fontsize=5)
 
 ax2.plot(T[0:it],U[0:it,0] , color=plt.cm.hsv(100) , linestyle='-' )
-ax2.plot(T[0:it],Y[0:it,0] , color=plt.cm.hsv(200) , linestyle='-' )
+ax2.plot(T[0:it],Y[0:it,10] , color=plt.cm.hsv(200) , linestyle='-' )
 ax2.set_ylabel('Power (W)')
 
 ax3.plot(T[0:it],U[0:it,2] , color=plt.cm.hsv(130) , linestyle='-' )
@@ -102,7 +108,7 @@ cp = 4180
 dt = max(t) - min(t)
 error = Y[idx,6] - T_sp
 
-print("Error:")
+print("Error statistics:")
 print("std = %f" % error.std())
 print("avg = %f" % error.mean())
 print("min = %f" % error.min())
