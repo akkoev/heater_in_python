@@ -179,25 +179,25 @@ void Heater::Initialize (XXDouble *u, XXDouble *y, XXDouble t)
 
 
 	/* set the initial values */
-	m_I[2] = 238400.0;		/* Layer1\CSteel\Q_init {J} */
-	m_I[3] = 498256.0;		/* Layer1\CWater4\Q_init {J} */
-	m_I[4] = 2.29008559702441e-4;		/* Layer1\C_gas_1\m_gas_init {kg} */
+	m_I[2] = 362400.0;		/* Layer1\CSteel\Q_init {J} */
+	m_I[3] = 757416.0;		/* Layer1\CWater4\Q_init {J} */
+	m_I[4] = 1.50650222497412e-4;		/* Layer1\C_gas_1\m_gas_init {kg} */
 	m_I[5] = 58.2162334100266;		/* Layer1\C_gas_1\U_gas_init {J} */
-	m_I[6] = 238400.0;		/* Layer2\CSteel\Q_init {J} */
-	m_I[7] = 498256.0;		/* Layer2\CWater4\Q_init {J} */
-	m_I[8] = 2.29008559702441e-4;		/* Layer2\C_gas_1\m_gas_init {kg} */
+	m_I[6] = 362400.0;		/* Layer2\CSteel\Q_init {J} */
+	m_I[7] = 757416.0;		/* Layer2\CWater4\Q_init {J} */
+	m_I[8] = 1.50650222497412e-4;		/* Layer2\C_gas_1\m_gas_init {kg} */
 	m_I[9] = 58.2162334100266;		/* Layer2\C_gas_1\U_gas_init {J} */
-	m_I[10] = 238400.0;		/* Layer3\CSteel\Q_init {J} */
-	m_I[11] = 498256.0;		/* Layer3\CWater4\Q_init {J} */
-	m_I[12] = 2.29008559702441e-4;		/* Layer3\C_gas_1\m_gas_init {kg} */
+	m_I[10] = 362400.0;		/* Layer3\CSteel\Q_init {J} */
+	m_I[11] = 757416.0;		/* Layer3\CWater4\Q_init {J} */
+	m_I[12] = 1.50650222497412e-4;		/* Layer3\C_gas_1\m_gas_init {kg} */
 	m_I[13] = 58.2162334100266;		/* Layer3\C_gas_1\U_gas_init {J} */
-	m_I[14] = 238400.0;		/* Layer4\CSteel\Q_init {J} */
-	m_I[15] = 498256.0;		/* Layer4\CWater4\Q_init {J} */
-	m_I[16] = 2.29008559702441e-4;		/* Layer4\C_gas_1\m_gas_init {kg} */
+	m_I[14] = 362400.0;		/* Layer4\CSteel\Q_init {J} */
+	m_I[15] = 757416.0;		/* Layer4\CWater4\Q_init {J} */
+	m_I[16] = 1.50650222497412e-4;		/* Layer4\C_gas_1\m_gas_init {kg} */
 	m_I[17] = 58.2162334100266;		/* Layer4\C_gas_1\U_gas_init {J} */
-	m_I[18] = 238400.0;		/* Layer5\CSteel\Q_init {J} */
-	m_I[19] = 498256.0;		/* Layer5\CWater4\Q_init {J} */
-	m_I[20] = 2.29008559702441e-4;		/* Layer5\C_gas_1\m_gas_init {kg} */
+	m_I[18] = 362400.0;		/* Layer5\CSteel\Q_init {J} */
+	m_I[19] = 757416.0;		/* Layer5\CWater4\Q_init {J} */
+	m_I[20] = 1.50650222497412e-4;		/* Layer5\C_gas_1\m_gas_init {kg} */
 	m_I[21] = 58.2162334100266;		/* Layer5\C_gas_1\U_gas_init {J} */
 	m_I[0] = 0.0;		/* LowPassFilter1\s1y_initial */
 	m_I[1] = 0.0;		/* LowPassFilter1\y_initial */
